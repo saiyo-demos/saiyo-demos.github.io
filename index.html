@@ -111,7 +111,7 @@ $("#form").addEventListener("submit", async (e)=>{
   if(!pw){ setMsg("パスワードを入力してください","err"); return; }
   $("#btn").disabled = true; setMsg("確認中…","info");
   try{
-    const cipher = b64ToBytes(await (await fetch(ENTRY.file+"?_="+Date.now())).text());
+    const cipher = b64ToBytes(await (await fetch("demos/"+id+".enc?_="+Date.now())).text());
     const plainBytes = xor(cipher, await keyOf(pw));
     const text = new TextDecoder("utf-8").decode(plainBytes);
     if(text.startsWith(MAGIC)){
