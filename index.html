@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>採用ページ プレビュー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{ --paper:#f4efe4; --ink:#191713; --sub:#6f685c; --accent:#ff4326; --line:#ddd4c2; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{font-family:"Zen Kaku Gothic New","Noto Sans JP",sans-serif;color:var(--ink);
+    background:var(--paper);font-feature-settings:"palt" 1;-webkit-font-smoothing:antialiased}
+  /* ゲート画面 */
+  .gate{min-height:100%;display:flex;align-items:center;justify-content:center;padding:24px}
+  .card{width:100%;max-width:380px;text-align:center}
+  .mk{width:54px;height:54px;border-radius:14px;background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:26px;margin:0 auto 20px}
+  .lock{font-size:13px;color:var(--sub);letter-spacing:.04em}
+  .card h1{font-size:22px;font-weight:900;margin:6px 0 4px;line-height:1.4}
+  .card .co{font-size:14px;color:var(--sub);margin-bottom:26px}
+  .field{display:flex;flex-direction:column;gap:10px}
+  input[type=password]{width:100%;padding:14px 16px;border:1.5px solid var(--line);border-radius:10px;
+    font-size:16px;background:#fff;text-align:center;letter-spacing:.1em}
+  input[type=password]:focus{outline:none;border-color:var(--accent)}
+  button{width:100%;padding:14px;border:none;border-radius:10px;background:var(--ink);color:var(--paper);
+    font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .15s}
+  button:hover{opacity:.88} button:disabled{opacity:.5;cursor:default}
+  .msg{font-size:13px;margin-top:14px;min-height:18px}
+  .msg.err{color:var(--accent)} .msg.info{color:var(--sub)}
+  .foot{margin-top:32px;font-size:11px;color:#a89f8d}
+  /* プレビュー表示 */
+  #frame{display:none;position:fixed;inset:0;width:100%;height:100%;border:0;background:#fff}
+  body.shown{overflow:hidden}
+</style>
+</head>
+<body>
+  <div class="gate" id="gate">
+    <div class="card">
+      <div class="mk" id="mark">採</div>
+      <div class="lock">🔒 パスワード保護されたプレビュー</div>
+      <h1 id="title">採用ページ プレビュー</h1>
+      <div class="co" id="company"></div>
+      <form class="field" id="form" autocomplete="off">
+        <input type="password" id="pw" placeholder="パスワードを入力" autocomplete="off" inputmode="text">
+        <button type="submit" id="btn">プレビューを見る</button>
+      </form>
+      <div class="msg info" id="msg">担当者からお伝えしたパスワードを入力してください</div>
+      <div class="foot">このページは関係者限定の専用プレビューです</div>
+    </div>
+  </div>
+  <iframe id="frame" title="採用ページプレビュー"></iframe>
+
+<script>
+const $ = s => document.querySelector(s);
+const params = new URLSearchParams(location.search);
+const id = params.get("id");
+const MAGIC = "SAIYO-DEMO-V1\n";
+
+function setMsg(t, cls){ const m=$("#msg"); m.textContent=t; m.className="msg "+(cls||"info"); }
+
+// base64文字列 → Uint8Array
+function b64ToBytes(b64){
+  const bin = atob(b64.trim());
+  const out = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) out[i]=bin.charCodeAt(i);
+  return out;
+}
+// パスワード → 32byte鍵（SHA-256）
+async function keyOf(pw){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+  return new Uint8Array(buf);
+}
+function xor(data, key){
+  const out = new Uint8Array(data.length);
+  for(let i=0;i<data.length;i++) out[i]=data[i]^key[i%key.length];
+  return out;
+}
+
+let ENTRY = null;
+
+async function init(){
+  if(!id || !/^[a-zA-Z0-9_-]+$/.test(id)){ lockUI("リンクが正しくありません", "ページIDが指定されていません"); return; }
+  // 一覧(manifest)は作らず、slugを知る人だけが各metaを取得できる設計
+  let res;
+  try{
+    res = await fetch("demos/"+id+".json?_="+Date.now());
+  }catch(e){ lockUI("読み込みエラー", "しばらくして再度お試しください"); return; }
+  if(!res.ok){ lockUI("ページが見つかりません", "リンクをご確認ください"); return; }
+  try{ ENTRY = await res.json(); }
+  catch(e){ lockUI("読み込みエラー", "しばらくして再度お試しください"); return; }
+  if(ENTRY.expiresAt){
+    const today = new Date().toISOString().slice(0,10);
+    if(today > ENTRY.expiresAt){ lockUI("有効期限が切れました", "担当者までご連絡ください"); return; }
+  }
+  // 会社名は公開metaに無い（暗号blob内に封入）。ゲートは汎用表示にする。
+  $("#company").textContent = "ご担当者様 専用プレビュー";
+}
+function lockUI(title, msg){
+  $("#title").textContent = title;
+  $("#form").style.display = "none";
+  setMsg(msg, "err");
+}
+
+$("#form").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const pw = $("#pw").value;
+  if(!pw){ setMsg("パスワードを入力してください","err"); return; }
+  $("#btn").disabled = true; setMsg("確認中…","info");
+  try{
+    const cipher = b64ToBytes(await (await fetch(ENTRY.file+"?_="+Date.now())).text());
+    const plainBytes = xor(cipher, await keyOf(pw));
+    const text = new TextDecoder("utf-8").decode(plainBytes);
+    if(text.startsWith(MAGIC)){
+      const rest = text.slice(MAGIC.length);
+      const nl = rest.indexOf("\n");          // 1行目=会社名(封入)、2行目以降=LP本文
+      const html = nl >= 0 ? rest.slice(nl + 1) : rest;
+      const f = $("#frame");
+      f.srcdoc = html;
+      f.style.display = "block";
+      document.body.classList.add("shown");
+      $("#gate").style.display = "none";
+    }else{
+      setMsg("パスワードが違います","err"); $("#btn").disabled=false;
+    }
+  }catch(err){
+    setMsg("パスワードが違います","err"); $("#btn").disabled=false;
+  }
+});
+
+init();
+</script>
+</body>
+</html>
