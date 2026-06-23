@@ -42,7 +42,7 @@
     <div class="card">
       <div class="mk" id="mark">採</div>
       <div class="lock">🔒 パスワード保護されたプレビュー</div>
-      <h1 id="title">採用ページ プレビュー</h1>
+      <h1 id="title"></h1>
       <div class="co" id="company"></div>
       <form class="field" id="form" autocomplete="off">
         <input type="password" id="pw" placeholder="パスワードを入力" autocomplete="off" inputmode="text">
@@ -96,8 +96,7 @@ async function init(){
     const today = new Date().toISOString().slice(0,10);
     if(today > ENTRY.expiresAt){ lockUI("有効期限が切れました", "担当者までご連絡ください"); return; }
   }
-  // 会社名は公開metaに無い（暗号blob内に封入）。ゲートは汎用表示にする。
-  $("#company").textContent = "ご担当者様 専用プレビュー";
+  // ゲートは最小表示（🔒の行のみ）。会社名・タイトルは出さない。
 }
 function lockUI(title, msg){
   $("#title").textContent = title;
