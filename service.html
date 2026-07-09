@@ -7,7 +7,7 @@
 <meta name="description" content="求人にお金をかけても応募が来ない——その原因は「応募の受け皿」。貴社専用の採用に特化したホームページを、初期0円・初月無料、2ヶ月目以降 月9,900円（税込）で。まずは無料の試作版から。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --blue:#0e8fe6; --blue-d:#0a6ed1; --blue-l:#3fb0f7;
@@ -21,8 +21,13 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.75;overflow-x:hidden;-webkit-text-size-adjust:100%}
+body{font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.8;font-size:15px;letter-spacing:.01em;overflow-x:hidden;-webkit-text-size-adjust:100%;font-feature-settings:"palt" 1}
 .round{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif}
+.impact{font-family:"Dela Gothic One","M PLUS Rounded 1c",sans-serif;font-weight:400;letter-spacing:.01em}
+/* 見出し・数字にインパクト体/丸ゴシックを適用 */
+.htitle h2{font-family:"M PLUS Rounded 1c",sans-serif;letter-spacing:.01em}
+.bcard .n,.pstep .v{font-family:"Dela Gothic One","M PLUS Rounded 1c",sans-serif;letter-spacing:.005em}
+.facts .v{font-family:"M PLUS Rounded 1c",sans-serif}
 img{max-width:100%;display:block}
 .wrap{width:100%;max-width:640px;margin:0 auto;padding:0 20px}
 .tax{font-size:.62em;vertical-align:.1em;font-weight:700}
@@ -43,13 +48,15 @@ img{max-width:100%;display:block}
 .hero .inner{position:relative;z-index:2;text-align:center}
 .htag{display:inline-block;background:#fff;color:var(--blue-d);font-weight:900;font-size:13px;padding:6px 16px;border-radius:999px;box-shadow:0 4px 0 rgba(0,0,0,.12);margin-bottom:14px}
 .hcopy{font-size:16px;font-weight:700;text-shadow:0 2px 6px rgba(0,40,80,.35);margin-bottom:6px}
-.hbig{font-weight:900;line-height:1.12;font-size:clamp(34px,10.5vw,52px);letter-spacing:-.02em;
+.hbig{font-weight:900;line-height:1.14;font-size:clamp(31px,9.4vw,48px);letter-spacing:-.02em;
   text-shadow:0 3px 0 var(--blue-d),0 6px 14px rgba(0,30,70,.4);}
 .hbig .y{color:var(--yellow);-webkit-text-stroke:1px #b58f00}
 .hbig .r{color:#fff;background:var(--red);padding:0 .12em;border-radius:10px;box-shadow:0 4px 0 var(--red-d);-webkit-text-stroke:0}
 .hq{display:inline-block;font-size:clamp(52px,16vw,84px);color:var(--yellow);-webkit-text-stroke:2px #b58f00;transform:rotate(6deg);line-height:.8;vertical-align:-.05em}
 .hero .lead{font-size:14px;margin:16px auto 0;max-width:440px;text-shadow:0 1px 4px rgba(0,40,80,.4);font-weight:500}
 .hero .lead b{color:var(--yellow)}
+.hshot{position:relative;z-index:2;margin:18px auto 0;max-width:460px;border-radius:20px;overflow:hidden;box-shadow:0 12px 30px rgba(4,40,80,.35);border:4px solid #fff}
+.hshot img{width:100%;height:auto;display:block}
 
 /* fact chips */
 .facts{position:relative;z-index:2;margin:22px auto 0;max-width:460px;background:#fff;border-radius:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr 1fr;overflow:hidden}
@@ -87,8 +94,8 @@ section{position:relative}
 .bcard .cap{display:inline-flex;align-items:center;gap:5px;background:var(--blue);color:#fff;font-weight:900;font-size:12px;padding:4px 12px;border-radius:999px;margin-bottom:10px}
 .bcard .cap::before{content:"✓";font-size:12px}
 .bcard h3{font-size:15px;font-weight:900;color:var(--ink);line-height:1.4}
-.bcard .n{font-weight:900;color:var(--red);font-size:clamp(26px,8vw,34px);line-height:1.1;margin-top:2px}
-.bcard .n small{font-size:14px;color:var(--ink)}
+.bcard .n{font-weight:900;color:var(--red);font-size:clamp(22px,6.6vw,30px);line-height:1.1;margin-top:2px}
+.bcard .n small{font-size:12px;color:var(--ink)}
 .bcard p{font-size:12px;color:var(--ink-2);margin-top:6px}
 
 /* yellow band */
@@ -96,7 +103,7 @@ section{position:relative}
 .band::before,.band::after{content:"";position:absolute;width:200%;height:22px;left:-50%;background:repeating-linear-gradient(-45deg,#ffd000 0 18px,var(--yellow) 18px 36px)}
 .band::before{top:0}.band::after{bottom:0}
 .band .bt{position:relative;font-weight:900;font-size:clamp(22px,6.6vw,30px);color:var(--navy);line-height:1.35}
-.band .bt .big{display:inline-block;font-size:1.25em;color:var(--red);transform:rotate(-2deg)}
+.band .bt .big{display:inline-block;font-size:1.12em;color:var(--red);transform:rotate(-2deg)}
 .band .sub{position:relative;font-size:14px;font-weight:700;color:var(--ink-2);margin-top:8px}
 
 /* worries speech bubbles */
@@ -118,7 +125,7 @@ section{position:relative}
 .solve::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.55) 20%,transparent 21%);background-size:18px 18px;opacity:.6}
 .solve .st{position:relative;font-weight:900;font-size:clamp(24px,7vw,34px);line-height:1.3;color:var(--navy)}
 .solve .st .brand{color:var(--blue-d);background:#fff;padding:0 .15em;border-radius:8px;box-shadow:0 3px 0 rgba(0,0,0,.12)}
-.solve .st .big{display:block;font-size:1.35em;color:var(--red);text-shadow:0 2px 0 #fff}
+.solve .st .big{display:block;font-size:1.18em;color:var(--red);text-shadow:0 2px 0 #fff}
 
 /* features */
 .feat{background:linear-gradient(180deg,#0a6ed1,#0e8fe6);color:#fff;padding:52px 0}
@@ -200,8 +207,10 @@ footer a{color:#9fd0ff}
   <div class="wrap inner">
     <span class="htag round">求人を出している経営者さまへ</span>
     <p class="hcopy round">求人にお金をかけても、応募が来ない…</p>
-    <div class="hbig round">採用ホームページ、<br><span class="r">初月0円</span><span class="hq">!?</span></div>
+    <div class="hbig round">採用ホームページ、<br><span class="r impact">初月0円</span><span class="hq impact">!?</span></div>
     <p class="lead">その原因の多くは、求人ではなく<b>「応募の受け皿」</b>。<br>貴社専用の<b>採用に特化したホームページ</b>を、まずは無料の試作版でご用意します。</p>
+
+    <div class="hshot"><img src="assets/hero_workers.png" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></div>
 
     <div class="facts">
       <div class="f"><div class="k">初期費用</div><div class="v red">0<small>円</small></div></div>
@@ -231,7 +240,7 @@ footer a{color:#9fd0ff}
 <!-- yellow band -->
 <section class="band">
   <div class="wrap">
-    <p class="bt round">最適解のない提案・営業は<br><span class="big">いたしません</span>✋</p>
+    <p class="bt round">最適解のない提案・営業は<br><span class="big impact">いたしません</span>✋</p>
     <p class="sub">まずは無料の試作版をご覧いただいてからのご判断でOKです。</p>
   </div>
 </section>
@@ -254,7 +263,7 @@ footer a{color:#9fd0ff}
 <!-- solution burst -->
 <section class="solve">
   <div class="wrap">
-    <p class="st round">そのお悩み、<br><span class="brand">採用の看板</span>が<br><span class="big">受け止めます！</span></p>
+    <p class="st round">そのお悩み、<br><span class="brand">採用の看板</span>が<br><span class="big impact">受け止めます！</span></p>
   </div>
 </section>
 
