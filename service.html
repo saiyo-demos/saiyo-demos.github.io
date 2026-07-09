@@ -67,6 +67,24 @@ img{max-width:100%;display:block}
 .hero .lead b{color:var(--yellow)}
 .hshot{position:relative;z-index:2;margin:18px auto 0;max-width:460px;border-radius:20px;overflow:hidden;box-shadow:0 12px 30px rgba(4,40,80,.35);border:4px solid #fff}
 .hshot img{width:100%;height:auto;display:block}
+.hmedia{display:none}
+/* PC：ヒーローを2カラムにして横幅を使い切る */
+@media(min-width:920px){
+  .hero{padding:44px 0 66px}
+  .hero .inner{display:grid;grid-template-columns:1.04fr .96fr;gap:52px;align-items:center;max-width:1120px}
+  .hero::after{top:50%;transform:translate(-50%,-50%)}
+  .htext{text-align:left}
+  .htext .htag{margin-bottom:16px}
+  .htext .hcopy{font-size:19px}
+  .htext .hbig{font-size:clamp(40px,3.6vw,56px)}
+  .htext .lead{margin:18px 0 0;max-width:540px;font-size:16.5px}
+  .htext .facts{margin:24px 0 0;max-width:540px}
+  .htext .cta{margin:22px 0 0;max-width:440px}
+  .htext .mini{text-align:left}
+  .hshot.mob{display:none}
+  .hmedia{display:block;position:relative;z-index:2}
+  .hmedia .hshot{margin:0;max-width:none;width:100%;border-width:6px;box-shadow:0 20px 44px rgba(4,40,80,.4)}
+}
 
 /* fact chips */
 .facts{position:relative;z-index:2;margin:22px auto 0;max-width:460px;background:#fff;border-radius:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
@@ -238,12 +256,13 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 <!-- hero -->
 <section class="hero">
   <div class="wrap inner">
+    <div class="htext">
     <span class="htag round">求人を出している経営者さまへ</span>
     <p class="hcopy round">求人にお金をかけても、応募が来ない…</p>
     <div class="hbig round">採用ホームページ、<br><span class="r impact">初月0円</span><span class="hq impact">!?</span></div>
     <p class="lead">その原因の多くは、求人ではなく<b>「応募の受け皿」</b>。<br>貴社専用の<b>採用に特化したホームページ</b>を、まずは無料の試作版でご用意します。</p>
 
-    <div class="hshot"><img src="assets/hero_workers.png" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></div>
+    <div class="hshot mob"><img src="assets/hero_workers.png" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></div>
 
     <div class="facts">
       <div class="f"><div class="k">初期費用</div><div class="v red">0<small>円</small></div></div>
@@ -254,6 +273,8 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
     <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">
       <span class="s">＼ ご相談は完全無料！ ／</span>まずは無料の試作版を受け取る<span class="arw">→</span></a>
     <p class="mini">※フォームから30秒でお申し込みいただけます</p>
+    </div>
+    <div class="hmedia"><div class="hshot pc"><img src="assets/hero_workers.png" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></div></div>
   </div>
 </section>
 
