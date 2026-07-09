@@ -21,7 +21,8 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.8;font-size:15px;letter-spacing:.01em;overflow-x:hidden;-webkit-text-size-adjust:100%;font-feature-settings:"palt" 1}
+html,body{overflow-x:clip}
+body{font-family:"Noto Sans JP",system-ui,sans-serif;color:var(--ink);background:#fff;line-height:1.8;font-size:15px;letter-spacing:.01em;-webkit-text-size-adjust:100%;font-feature-settings:"palt" 1}
 .round{font-family:"M PLUS Rounded 1c","Noto Sans JP",sans-serif}
 .impact{font-family:"Dela Gothic One","M PLUS Rounded 1c",sans-serif;font-weight:400;letter-spacing:.01em}
 /* 見出し・数字にインパクト体/丸ゴシックを適用 */
@@ -34,12 +35,13 @@ img{max-width:100%;display:block}
 
 /* ===== header ===== */
 .bar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(6px);box-shadow:0 2px 12px rgba(8,60,110,.12)}
-.bar .row{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;max-width:640px;margin:0 auto}
-.logo{display:flex;align-items:center;gap:8px;font-weight:900}
-.logo .mk{background:var(--blue);color:#fff;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:19px;box-shadow:0 3px 0 var(--blue-d)}
-.logo .tx{font-size:17px;letter-spacing:.02em}
-.logo .tx small{display:block;font-size:9px;color:var(--ink-2);font-weight:700;letter-spacing:.08em}
-.hbtn{background:linear-gradient(180deg,var(--orange-l),var(--orange));color:#fff;font-weight:900;font-size:13px;padding:9px 14px;border-radius:999px;text-decoration:none;box-shadow:0 4px 0 #d96600;white-space:nowrap}
+.bar .row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 14px;max-width:640px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:8px;font-weight:900;min-width:0;flex:1 1 auto}
+.logo .mk{flex:0 0 auto;background:var(--blue);color:#fff;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:18px;box-shadow:0 3px 0 var(--blue-d)}
+.logo .tx{font-size:16px;letter-spacing:.02em;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.logo .tx small{display:block;font-size:8.5px;color:var(--ink-2);font-weight:700;letter-spacing:.04em}
+.hbtn{background:linear-gradient(180deg,var(--orange-l),var(--orange));color:#fff;font-weight:900;font-size:12.5px;padding:9px 15px;border-radius:999px;text-decoration:none;box-shadow:0 4px 0 #d96600;white-space:nowrap;flex:0 0 auto}
+@media(max-width:400px){.logo .tx small{display:none}}
 
 /* ===== hero ===== */
 .hero{position:relative;background:linear-gradient(160deg,#1aa0f0 0%,var(--blue) 45%,var(--blue-d) 100%);color:#fff;padding:26px 0 60px;overflow:hidden}
@@ -48,7 +50,7 @@ img{max-width:100%;display:block}
 .hero .inner{position:relative;z-index:2;text-align:center}
 .htag{display:inline-block;background:#fff;color:var(--blue-d);font-weight:900;font-size:13px;padding:6px 16px;border-radius:999px;box-shadow:0 4px 0 rgba(0,0,0,.12);margin-bottom:14px}
 .hcopy{font-size:16px;font-weight:700;text-shadow:0 2px 6px rgba(0,40,80,.35);margin-bottom:6px}
-.hbig{font-weight:900;line-height:1.14;font-size:clamp(31px,9.4vw,48px);letter-spacing:-.02em;
+.hbig{font-weight:900;line-height:1.16;font-size:clamp(26px,8vw,46px);letter-spacing:-.025em;
   text-shadow:0 3px 0 var(--blue-d),0 6px 14px rgba(0,30,70,.4);}
 .hbig .y{color:var(--yellow);-webkit-text-stroke:1px #b58f00}
 .hbig .r{color:#fff;background:var(--red);padding:0 .12em;border-radius:10px;box-shadow:0 4px 0 var(--red-d);-webkit-text-stroke:0}
@@ -59,8 +61,8 @@ img{max-width:100%;display:block}
 .hshot img{width:100%;height:auto;display:block}
 
 /* fact chips */
-.facts{position:relative;z-index:2;margin:22px auto 0;max-width:460px;background:#fff;border-radius:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr 1fr;overflow:hidden}
-.facts .f{padding:14px 6px;text-align:center;border-right:1px dashed #cfe3f5}
+.facts{position:relative;z-index:2;margin:22px auto 0;max-width:460px;background:#fff;border-radius:18px;box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:hidden}
+.facts .f{min-width:0;padding:14px 6px;text-align:center;border-right:1px dashed #cfe3f5}
 .facts .f:last-child{border-right:0}
 .facts .f{padding-left:2px;padding-right:2px}
 .facts .k{font-size:10.5px;color:var(--ink-2);font-weight:700}
@@ -89,7 +91,7 @@ section{position:relative}
 
 /* benefits 4 grid */
 .bene{background:var(--paper)}
-.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .bcard{background:#fff;border-radius:16px;padding:20px 14px 18px;text-align:center;box-shadow:var(--shadow);border:2px solid #e3f0fb}
 .bcard .cap{display:inline-flex;align-items:center;gap:5px;background:var(--blue);color:#fff;font-weight:900;font-size:12px;padding:4px 12px;border-radius:999px;margin-bottom:10px}
 .bcard .cap::before{content:"✓";font-size:12px}
@@ -142,8 +144,8 @@ section{position:relative}
 .price{background:var(--paper);padding:52px 0}
 .pcard{background:#fff;border-radius:22px;box-shadow:var(--shadow);overflow:hidden;border:3px solid var(--blue);max-width:480px;margin:0 auto}
 .pcard .top{background:var(--blue);color:#fff;text-align:center;font-weight:900;font-size:16px;padding:12px}
-.psteps{display:flex;align-items:stretch;text-align:center;padding:22px 10px 6px}
-.pstep{flex:1;position:relative}
+.psteps{display:flex;align-items:stretch;text-align:center;padding:22px 8px 6px}
+.pstep{flex:1;min-width:0;position:relative}
 .pstep .k{font-size:12px;font-weight:700;color:var(--ink-2)}
 .pstep .v{font-weight:900;color:var(--red);font-size:clamp(20px,6.6vw,30px);line-height:1.05;white-space:nowrap}
 .pstep .v small{font-size:11px;color:var(--ink)}
@@ -198,7 +200,7 @@ footer a{color:#9fd0ff}
 <header class="bar">
   <div class="row">
     <div class="logo"><span class="mk round">看</span><span class="tx round">採用の看板<small>採用に特化したホームページ</small></span></div>
-    <a class="hbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">無料で試作を受ける</a>
+    <a class="hbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">無料相談</a>
   </div>
 </header>
 
@@ -339,7 +341,7 @@ footer a{color:#9fd0ff}
     <p>内容を確認のうえ、担当者より折り返しご連絡いたします。<br>初期費用0円・初月無料・月9,900円（税込）。</p>
     <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">
       <span class="s">＼ ご相談は完全無料！ ／</span>無料で試作を受け取る<span class="arw">→</span></a>
-    <p class="mini" style="color:rgba(255,255,255,.9)">お電話：03-5468-9900（株式会社XseedLab メディア事業部）</p>
+    <p class="mini" style="color:rgba(255,255,255,.9)">お電話 <a href="tel:05068613355" style="color:#fff;font-weight:900">050-6861-3355</a>　／　メール <a href="mailto:biz@xseedlab.jp" style="color:#fff;font-weight:900">biz@xseedlab.jp</a></p>
   </div>
 </section>
 
@@ -348,8 +350,7 @@ footer a{color:#9fd0ff}
   採用に特化したホームページで、応募の受け皿をつくる。<br>
   初期費用0円・初月無料・2ヶ月目以降 月9,900円（税込）<br><br>
   株式会社XseedLab メディア事業部<br>
-  〒150-0002 東京都渋谷区渋谷2-12-9 エスティ青山ビル5階<br>
-  お問い合わせ：03-5468-9900
+  お電話：<a href="tel:05068613355">050-6861-3355</a>　メール：<a href="mailto:biz@xseedlab.jp">biz@xseedlab.jp</a>
 </footer>
 
 <!-- sticky mobile cta -->
