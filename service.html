@@ -200,8 +200,15 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 /* sticky bottom cta */
 .sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);box-shadow:0 -3px 14px rgba(8,60,110,.16);padding:9px 14px}
 .sticky a{display:block;max-width:520px;margin:0 auto;background:linear-gradient(180deg,var(--orange-l),var(--orange));color:#fff;text-decoration:none;text-align:center;font-weight:900;padding:14px;border-radius:12px;box-shadow:0 4px 0 #d96600;font-size:17px}
-.sticky a:active{transform:translateY(2px);box-shadow:0 2px 0 #d96600}
-.sticky a{font-size:19px}
+.sticky a{font-size:19px;animation:ctaPulse 1.15s ease-in-out infinite,ctaGlow 1.15s ease-in-out infinite;transform-origin:center;will-change:transform}
+.sticky a:active{animation:none;transform:translateY(2px);box-shadow:0 2px 0 #d96600}
+@keyframes ctaPulse{0%,100%{transform:scale(1)}45%{transform:scale(1.055)}70%{transform:scale(.99)}}
+@keyframes ctaGlow{0%,100%{box-shadow:0 4px 0 #d96600,0 0 0 0 rgba(255,170,30,0)}50%{box-shadow:0 4px 0 #d96600,0 0 24px 7px rgba(255,170,30,.6)}}
+/* きらっと光沢スイープ */
+.sticky a{position:relative;overflow:hidden}
+.sticky a::after{content:"";position:absolute;top:0;left:-60%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:ctaShine 2.4s ease-in-out infinite}
+@keyframes ctaShine{0%{left:-60%}35%,100%{left:130%}}
+@media(prefers-reduced-motion:reduce){.sticky a,.sticky a::after{animation:none}}
 </style>
 </head>
 <body>
@@ -366,7 +373,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 
 <!-- sticky mobile cta -->
 <div class="sticky">
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">＼無料／ まずは試作版を受け取る →</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">＼初月無料／ まずは試作版を受け取る →</a>
 </div>
 
 </body>
