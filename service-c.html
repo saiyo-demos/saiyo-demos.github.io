@@ -556,7 +556,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
     <form id="applyForm" class="aform" action="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/formResponse" method="POST" target="gform_sink" novalidate>
       <div class="af">
         <label for="af_co">会社名 <span class="req">必須</span></label>
-        <input id="af_co" name="entry.1032007495" type="text" required placeholder="例）ミツヤファンメンテナンス">
+        <input id="af_co" name="entry.1032007495" type="text" required placeholder="例）〇〇自動車整備">
       </div>
       <div class="af">
         <label for="af_nm">お名前 <span class="req">必須</span></label>
@@ -670,46 +670,13 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 <!-- B FULL: back-to-top -->
 <button id="toTop" aria-label="ページ上部へ戻る">↑</button>
 
-<!-- B FULL: 離脱ポップ -->
-<div id="exitModal" class="exit" aria-hidden="true">
-  <div class="exitcard" role="dialog" aria-label="お帰りの前に">
-    <button class="exitclose" aria-label="閉じる">×</button>
-    <div class="exith">お帰りの前に…</div>
-    <p>いま決めなくて大丈夫です。<br><b>無料の試作版</b>だけでも、<br>受け取ってみませんか？</p>
-    <p class="exitsub">初期0円・初月無料／しつこい営業はしません</p>
-    <a class="cta" href="#apply">無料で試作版を受け取る →</a>
-    <button class="exitno">いまはやめておく</button>
-  </div>
-</div>
-
 <script>
 (function(){
+  // C: 離脱ポップは撤去。back-to-topのみ有効。
   var bt=document.getElementById('toTop');
   if(bt){
     addEventListener('scroll',function(){ scrollY>600?bt.classList.add('show'):bt.classList.remove('show'); },{passive:true});
     bt.addEventListener('click',function(){ scrollTo({top:0,behavior:'smooth'}); });
-  }
-  var modal=document.getElementById('exitModal');
-  if(modal){
-    var shown=false;
-    function openM(){ if(shown||sessionStorage.getItem('exitShown'))return; shown=true; sessionStorage.setItem('exitShown','1'); modal.classList.add('show');
-      try{if(typeof clarity==='function')clarity('set','exit_popup','C');}catch(e){} }
-    function closeM(){ modal.classList.remove('show'); }
-    modal.querySelector('.exitclose').addEventListener('click',closeM);
-    modal.querySelector('.exitno').addEventListener('click',closeM);
-    modal.addEventListener('click',function(e){ if(e.target===modal)closeM(); });
-    modal.querySelector('.cta').addEventListener('click',closeM);
-    document.addEventListener('mouseout',function(e){ if(e.clientY<=0 && !e.relatedTarget)openM(); });
-    var deep=false;
-    addEventListener('scroll',function(){ if(scrollY>900)deep=true; if(deep&&scrollY<250)openM(); },{passive:true});
-    // ブラウザバック（履歴）でも離脱ポップを表示
-    try{ history.pushState({m:1},'',location.href); }catch(e){}
-    addEventListener('popstate',function(){
-      if(!sessionStorage.getItem('exitShown')){
-        openM();
-        try{ history.pushState({m:1},'',location.href); }catch(e){}
-      }
-    });
   }
 })();
 </script>
