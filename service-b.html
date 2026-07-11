@@ -545,16 +545,23 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 
 <script>
 (function(){
-  document.documentElement.classList.add('js');
   try{if(typeof clarity==='function'){clarity('set','variant','B');}}catch(e){}
   var sel='.htitle,.bcard,.fcard,.step,.q,.cloud,.bub,.pcard,.final .inner,.band .bt,.solve .st,.bacard,.bacol,.wcard';
   var els=[].slice.call(document.querySelectorAll(sel));
-  els.forEach(function(el){el.classList.add('anim');});
-  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('show');});return;}
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
-  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
-  els.forEach(function(e){io.observe(e);});
+  function showAll(){els.forEach(function(e){e.classList.add('show');});}
+  // フェイルセーフ：JSがつまずいても絶対にコンテンツが隠れないよう保証する
+  // 1) reveal演出は成立したときだけ有効化（.jsを付けた瞬間だけ opacity:0 が効く）
+  // 2) 万一の未表示は最大1.2秒で強制表示、エラー時は即全表示
+  try{
+    if(!('IntersectionObserver' in window)){ showAll(); return; }
+    document.documentElement.classList.add('js');
+    els.forEach(function(el){el.classList.add('anim');});
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+    },{threshold:.01,rootMargin:'0px 0px 15% 0px'});
+    els.forEach(function(e){io.observe(e);});
+    setTimeout(showAll,1200); // 保険：1.2秒後に残りを必ず表示
+  }catch(e){ showAll(); }
 })();
 
 // フォーム誘導クリックをコンバージョン計測（GA4: generate_lead）
