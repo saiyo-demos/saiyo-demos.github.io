@@ -280,6 +280,50 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 .reassure span{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:800;color:#0b2b52;background:#fff;border:1.5px solid #cfe4f7;border-radius:999px;padding:7px 13px;box-shadow:0 3px 8px rgba(8,60,110,.08)}
 .reassure span::before{content:"✓";color:#0e8fe6;font-weight:900}
 @media(min-width:920px){.reassure{justify-content:flex-start}}
+
+/* ===== B FULL: Before/After ===== */
+.ba{background:var(--paper);padding:54px 0}
+.ba .bawrap{display:grid;gap:16px;margin-top:26px}
+.bacard{background:#fff;border-radius:18px;padding:18px 18px 20px;box-shadow:var(--shadow);border:2px solid #e2ecf6;position:relative;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease}
+.bacard:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(8,60,110,.2)}
+.bacard img{border-radius:12px;width:100%;aspect-ratio:4/3;object-fit:cover;margin-bottom:15px}
+.bacard .bal{position:absolute;top:0;left:0;font-family:"Dela Gothic One",sans-serif;font-size:12.5px;color:#fff;padding:6px 16px;border-radius:0 0 14px 0;letter-spacing:.1em;z-index:2}
+.bacard.before{filter:saturate(.92)}
+.bacard.before .bal{background:#8494a6}
+.bacard.after{border-color:var(--blue)}
+.bacard.after .bal{background:var(--blue)}
+.bacard ul{list-style:none;display:grid;gap:10px}
+.bacard li{position:relative;padding-left:31px;font-weight:700;font-size:15.5px;line-height:1.6}
+.bacard.before li{color:var(--ink-2)}
+.bacard.before li::before{content:"×";position:absolute;left:5px;top:-1px;color:#b0392f;font-weight:900;font-size:19px}
+.bacard.after li{color:var(--navy)}
+.bacard.after li::before{content:"○";position:absolute;left:3px;top:1px;color:var(--blue);font-weight:900}
+.baarrow{text-align:center;font-size:32px;color:var(--orange);font-weight:900;line-height:1;margin:-3px 0}
+@media(min-width:820px){.ba .bawrap{grid-template-columns:1fr auto 1fr;align-items:center}.baarrow{transform:rotate(-90deg)}}
+/* ===== B FULL: Why now ===== */
+.whynow{padding:56px 0;background:#fff}
+.wgrid{display:grid;gap:15px;margin-top:26px}
+.wcard{background:linear-gradient(180deg,#fff,var(--paper));border:2px solid #e2ecf6;border-radius:16px;padding:20px;box-shadow:0 8px 22px rgba(8,60,110,.07);display:flex;gap:15px;align-items:flex-start;transition:transform .22s ease,box-shadow .22s ease}
+.wcard:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(8,60,110,.17)}
+.wcard .wic{flex:0 0 auto;width:56px;height:56px;border-radius:15px;background:var(--blue);display:grid;place-items:center;font-size:28px;box-shadow:0 4px 0 var(--blue-d)}
+.wcard h3{font-family:"M PLUS Rounded 1c",sans-serif;font-weight:900;font-size:17px;color:var(--navy);line-height:1.5;margin-bottom:5px}
+.wcard p{font-size:14.5px;color:var(--ink-2);line-height:1.75}
+/* ===== B FULL: back-to-top ===== */
+#toTop{position:fixed;right:15px;bottom:96px;z-index:70;width:48px;height:48px;border-radius:50%;border:none;background:var(--navy);color:#fff;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(8,40,80,.35);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .3s,transform .3s,visibility .3s}
+#toTop.show{opacity:.93;visibility:visible;transform:none}
+#toTop:hover{opacity:1;background:var(--blue)}
+/* ===== B FULL: exit modal ===== */
+.exit{position:fixed;inset:0;z-index:100;background:rgba(6,20,40,.62);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:22px}
+.exit.show{display:flex;animation:exitfade .25s ease}
+@keyframes exitfade{from{opacity:0}to{opacity:1}}
+.exitcard{background:#fff;border-radius:20px;max-width:400px;width:100%;padding:32px 24px 22px;text-align:center;position:relative;box-shadow:0 30px 70px rgba(0,0,0,.42);animation:exitpop .3s cubic-bezier(.2,.8,.3,1)}
+@keyframes exitpop{from{transform:translateY(20px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+.exitclose{position:absolute;top:8px;right:12px;background:none;border:none;font-size:27px;color:#9fb0c4;cursor:pointer;line-height:1}
+.exith{font-family:"Dela Gothic One",sans-serif;font-size:21px;color:var(--navy);margin-bottom:12px}
+.exitcard p{font-size:15.5px;color:var(--ink);margin-bottom:8px;line-height:1.7}
+.exitcard .exitsub{font-size:12.5px;color:var(--ink-2);margin:10px 0 18px}
+.exitcard .cta{display:block;background:linear-gradient(180deg,var(--orange-l),var(--orange));color:#fff;text-decoration:none;font-weight:900;padding:15px;border-radius:13px;box-shadow:0 5px 0 #d96600;font-size:16.5px}
+.exitno{display:block;width:100%;margin-top:12px;background:none;border:none;color:#9aa8b8;font-size:13px;cursor:pointer;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -315,6 +359,34 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
     <div class="reassure"><span>しつこい営業なし</span><span>合わなければ初月でやめてOK</span><span>入力は3つだけ</span></div>
     </div>
     <div class="hmedia"><div class="hshot pc"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener"><img src="assets/hero_workers.png" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></a></div></div>
+  </div>
+</section>
+
+<!-- B FULL: Before/After -->
+<section class="ba">
+  <div class="wrap">
+    <div class="htitle"><span class="en">BEFORE / AFTER</span><h2>「受け皿」があるだけで、<br><span class="u">ここまで変わる。</span></h2></div>
+    <div class="bawrap">
+      <div class="bacard before anim">
+        <span class="bal">BEFORE</span>
+        <img src="assets/ba_before.png" alt="応募が来ず悩む経営者" width="1200" height="900">
+        <ul>
+          <li>媒体に載せても、応募ゼロ</li>
+          <li>検索されても、見せるページが無い</li>
+          <li>「ここ大丈夫？」と不安で辞退</li>
+        </ul>
+      </div>
+      <div class="baarrow">▼</div>
+      <div class="bacard after anim">
+        <span class="bal">AFTER</span>
+        <img src="assets/ba_after.png" alt="応募が増えた現場" width="1200" height="900">
+        <ul>
+          <li>専用の採用ページで第一印象UP</li>
+          <li>検索した求職者を取りこぼさない</li>
+          <li>「働きたい」が伝わり、応募が増える</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -414,6 +486,18 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
   </div>
 </section>
 
+<!-- B FULL: Why now -->
+<section class="whynow">
+  <div class="wrap">
+    <div class="htitle"><span class="en">WHY NOW</span><h2>なぜ、<span class="u">今</span>なのか。</h2></div>
+    <div class="wgrid">
+      <div class="wcard anim"><div class="wic">🔍</div><div><h3>求職者の多くが、応募前に会社を検索する時代</h3><p>スマホで会社名を検索し、何も出てこなければその場で離脱。受け皿が無いだけで、応募のチャンスを逃しています。</p></div></div>
+      <div class="wcard anim"><div class="wic">👥</div><div><h3>現場職の人手不足は、年々深刻に</h3><p>採用競争は激化する一方。媒体費を払い続けても、受け皿が弱いと応募にはつながりません。</p></div></div>
+      <div class="wcard anim"><div class="wic">🎁</div><div><h3>初月無料の“今”が、いちばん始めやすい</h3><p>初期0円・初月無料。ノーリスクで試作版から始められる今が、動き出すのに最適なタイミングです。</p></div></div>
+    </div>
+  </div>
+</section>
+
 <!-- faq -->
 <section class="faq">
   <div class="wrap">
@@ -462,7 +546,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 (function(){
   document.documentElement.classList.add('js');
   try{if(typeof clarity==='function'){clarity('set','variant','B');}}catch(e){}
-  var sel='.htitle,.bcard,.fcard,.step,.q,.cloud,.bub,.pcard,.final .inner,.band .bt,.solve .st';
+  var sel='.htitle,.bcard,.fcard,.step,.q,.cloud,.bub,.pcard,.final .inner,.band .bt,.solve .st,.bacard,.wcard';
   var els=[].slice.call(document.querySelectorAll(sel));
   els.forEach(function(el){el.classList.add('anim');});
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('show');});return;}
@@ -479,9 +563,11 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
     if(typeof fbq==='function'){ try{fbq('track','Lead',{content_name:'saiyo_form',source:loc,variant:'B'});}catch(e){} }
     if(typeof clarity==='function'){ try{clarity('set','cta_click',loc);}catch(e){} }
   }
-  document.querySelectorAll('a[href*="docs.google.com/forms"]').forEach(function(a){
-    var loc = a.closest('.sticky') ? 'sticky' : (a.closest('.hero') ? 'hero' : (a.closest('.final') ? 'final' : (a.closest('.price') ? 'price' : (a.closest('.bar') ? 'header' : 'other'))));
-    a.addEventListener('click',function(){ fire(loc); });
+  document.addEventListener('click',function(ev){
+    var a = ev.target.closest ? ev.target.closest('a[href*="docs.google.com/forms"]') : null;
+    if(!a) return;
+    var loc = a.closest('.sticky') ? 'sticky' : (a.closest('.exit') ? 'exit' : (a.closest('.hero') ? 'hero' : (a.closest('.final') ? 'final' : (a.closest('.price') ? 'price' : (a.closest('.bar') ? 'header' : 'other')))));
+    fire(loc);
   });
 })();
 </script>
@@ -491,5 +577,43 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
   <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener"><span class="s">＼ 初月無料 ／</span>まずは試作版を受け取る<span class="arw">→</span></a>
 </div>
 
+<!-- B FULL: back-to-top -->
+<button id="toTop" aria-label="ページ上部へ戻る">↑</button>
+
+<!-- B FULL: 離脱ポップ -->
+<div id="exitModal" class="exit" aria-hidden="true">
+  <div class="exitcard" role="dialog" aria-label="お帰りの前に">
+    <button class="exitclose" aria-label="閉じる">×</button>
+    <div class="exith">お帰りの前に…</div>
+    <p>いま決めなくて大丈夫です。<br><b>無料の試作版</b>だけでも、<br>受け取ってみませんか？</p>
+    <p class="exitsub">初期0円・初月無料／しつこい営業はしません</p>
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">無料で試作版を受け取る →</a>
+    <button class="exitno">いまはやめておく</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var bt=document.getElementById('toTop');
+  if(bt){
+    addEventListener('scroll',function(){ scrollY>600?bt.classList.add('show'):bt.classList.remove('show'); },{passive:true});
+    bt.addEventListener('click',function(){ scrollTo({top:0,behavior:'smooth'}); });
+  }
+  var modal=document.getElementById('exitModal');
+  if(modal){
+    var shown=false;
+    function openM(){ if(shown||sessionStorage.getItem('exitShown'))return; shown=true; sessionStorage.setItem('exitShown','1'); modal.classList.add('show');
+      try{if(typeof clarity==='function')clarity('set','exit_popup','B');}catch(e){} }
+    function closeM(){ modal.classList.remove('show'); }
+    modal.querySelector('.exitclose').addEventListener('click',closeM);
+    modal.querySelector('.exitno').addEventListener('click',closeM);
+    modal.addEventListener('click',function(e){ if(e.target===modal)closeM(); });
+    modal.querySelector('.cta').addEventListener('click',closeM);
+    document.addEventListener('mouseout',function(e){ if(e.clientY<=0 && !e.relatedTarget)openM(); });
+    var deep=false;
+    addEventListener('scroll',function(){ if(scrollY>900)deep=true; if(deep&&scrollY<250)openM(); },{passive:true});
+  }
+})();
+</script>
 </body>
 </html>
