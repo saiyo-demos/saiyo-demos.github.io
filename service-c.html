@@ -230,6 +230,30 @@ section{position:relative}
 .final h2 .y{color:var(--yellow)}
 .final p{font-size:16px;margin-top:12px;text-shadow:0 1px 4px rgba(0,40,80,.4)}
 
+/* ===== C: 埋め込み申し込みフォーム ===== */
+.aform{max-width:460px;margin:22px auto 0;text-align:left;background:#fff;border-radius:18px;padding:20px 18px 22px;box-shadow:0 14px 34px rgba(4,40,80,.28)}
+.aform .af{margin-bottom:13px}
+.aform label{display:block;font-weight:800;color:var(--navy);font-size:14px;margin-bottom:6px}
+.aform .req{display:inline-block;background:var(--red);color:#fff;font-size:10.5px;font-weight:900;padding:1px 7px;border-radius:5px;margin-left:5px;vertical-align:1px}
+.aform input[type=text],.aform input[type=tel],.aform input[type=email]{width:100%;font-size:16px;padding:13px 14px;border:2px solid #d6e5f4;border-radius:11px;background:#f7fbff;color:var(--ink);font-family:inherit}
+.aform input:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(14,143,230,.15)}
+.aform .agree{display:flex;gap:9px;align-items:flex-start;font-weight:700;color:var(--ink-2);font-size:13px;line-height:1.6;margin:4px 0 6px}
+.aform .agree input{width:20px;height:20px;flex:0 0 auto;margin-top:2px;accent-color:var(--blue)}
+.aform .agree a{color:var(--blue-d);font-weight:800}
+.asubmit{width:100%;border:none;cursor:pointer;font-family:inherit;background:linear-gradient(180deg,var(--orange-l),var(--orange));color:#fff;font-weight:900;font-size:18px;padding:16px;border-radius:14px;box-shadow:0 5px 0 #d96600;margin-top:6px}
+.asubmit .s{display:block;font-size:12.5px;margin-bottom:2px;letter-spacing:.02em;font-weight:800}
+.asubmit .arw{margin-left:6px}
+.asubmit:active{transform:translateY(2px);box-shadow:0 3px 0 #d96600}
+.asubmit:disabled{opacity:.7;cursor:default}
+.aerr{color:#fff;background:var(--red-d);border-radius:9px;padding:9px 12px;font-size:13px;font-weight:700;margin-top:10px}
+.aor{text-align:center;font-size:13px;color:var(--ink-2);margin-top:12px;font-weight:700}
+.aor a{color:var(--blue-d);font-weight:900}
+.athanks{max-width:460px;margin:22px auto 0;background:#fff;border-radius:18px;padding:30px 22px;text-align:center;box-shadow:0 14px 34px rgba(4,40,80,.28)}
+.ath-ic{width:60px;height:60px;border-radius:50%;background:var(--blue);color:#fff;font-size:34px;font-weight:900;display:grid;place-items:center;margin:0 auto 14px;box-shadow:0 5px 0 var(--blue-d)}
+.athanks h3{color:var(--navy);font-size:20px;font-family:"M PLUS Rounded 1c",sans-serif;margin-bottom:8px}
+.athanks p{color:var(--ink-2);font-size:14.5px;font-weight:600}
+.athanks a{color:var(--blue-d);font-weight:900;font-size:17px}
+
 /* footer */
 footer{background:var(--navy);color:#cde0f2;text-align:center;padding:30px 20px 150px;font-size:13.5px;line-height:1.95}
 footer .fl{font-weight:900;color:#fff;font-size:16px;margin-bottom:6px}
@@ -333,7 +357,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 <header class="bar">
   <div class="row">
     <div class="logo"><span class="mk round">看</span><span class="tx round">採用の看板<small>採用に特化したホームページ</small></span></div>
-    <a class="hbtn" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">無料相談</a>
+    <a class="hbtn" href="#apply">無料相談</a>
   </div>
 </header>
 
@@ -346,7 +370,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
     <div class="hbig round">採用ホームページ、<br><span class="r impact">初月0円</span><span class="hq impact">!?</span></div>
     <p class="lead">その原因の多くは、求人ではなく<b>「応募の受け皿」</b>。<br>貴社専用の<b>採用に特化したホームページ</b>を、まずは無料の試作版でご用意します。</p>
 
-    <div class="hshot mob"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener"><img src="assets/hero_workers.webp" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></a></div>
+    <div class="hshot mob"><a href="#apply"><img src="assets/hero_workers.webp" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></a></div>
 
     <div class="facts">
       <div class="f"><div class="k">初期費用</div><div class="v red">0<small>円</small></div></div>
@@ -354,12 +378,12 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
       <div class="f"><div class="k">2ヶ月目〜</div><div class="v">9,900<small>円/月<span class="tax">税込</span></small></div></div>
     </div>
 
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">
+    <a class="cta" href="#apply">
       <span class="s">＼ ご相談は完全無料！ ／</span>まずは無料の試作版を受け取る<span class="arw">→</span></a>
     <p class="mini">※フォームから30秒でお申し込みいただけます</p>
     <div class="reassure"><span>しつこい営業なし</span><span>合わなければ初月でやめてOK</span><span>入力は3つだけ</span></div>
     </div>
-    <div class="hmedia"><div class="hshot pc"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener"><img src="assets/hero_workers.webp" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></a></div></div>
+    <div class="hmedia"><div class="hshot pc"><a href="#apply"><img src="assets/hero_workers.webp" alt="採用がうまくいった現場の仲間たち" width="1200" height="900"></a></div></div>
   </div>
 </section>
 
@@ -472,7 +496,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
       </div>
       <p class="pnote">※表示は月額9,000円（税別）＝9,900円（税込）です。無料期間終了後、2ヶ月目以降 月9,900円（税込）が発生します。</p>
     </div>
-    <a class="cta blue" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">
+    <a class="cta blue" href="#apply">
       <span class="s">＼ まずは無料の試作版から ／</span>0円で試作を受け取る<span class="arw">→</span></a>
   </div>
 </section>
@@ -523,15 +547,47 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
   </div>
 </section>
 
-<!-- final cta -->
-<section class="final">
+<!-- C: 埋め込み申し込みフォーム（外部遷移なし・裏で既存Googleフォームへ送信） -->
+<section class="final" id="apply">
   <div class="wrap inner">
-    <h2>まずは、<span class="y">無料の試作版</span>を<br>ご覧ください。</h2>
-    <p>内容を確認のうえ、担当者より折り返しご連絡いたします。<br>初期費用0円・初月無料・月9,900円（税込）。</p>
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">
-      <span class="s">＼ ご相談は完全無料！ ／</span>無料で試作を受け取る<span class="arw">→</span></a>
-    <p class="mini" style="color:rgba(255,255,255,.9)">お電話 <a href="tel:05068613355" style="color:#fff;font-weight:900">050-6861-3355</a>　／　メール <a href="mailto:biz@xseedlab.jp" style="color:#fff;font-weight:900">biz@xseedlab.jp</a></p>
+    <h2>まずは、<span class="y">無料の試作版</span>を<br>受け取ってください。</h2>
+    <p>下記を入力して送信するだけ。<br>担当者より折り返しご連絡します（初期0円・初月無料）。</p>
+
+    <form id="applyForm" class="aform" action="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/formResponse" method="POST" target="gform_sink" novalidate>
+      <div class="af">
+        <label for="af_co">会社名 <span class="req">必須</span></label>
+        <input id="af_co" name="entry.1032007495" type="text" required placeholder="例）ミツヤファンメンテナンス">
+      </div>
+      <div class="af">
+        <label for="af_nm">お名前 <span class="req">必須</span></label>
+        <input id="af_nm" name="entry.1182576338" type="text" required placeholder="例）山田 太郎">
+      </div>
+      <div class="af">
+        <label for="af_tel">お電話番号 <span class="req">必須</span></label>
+        <input id="af_tel" name="entry.1616360026" type="tel" inputmode="tel" required placeholder="例）090-1234-5678">
+      </div>
+      <div class="af">
+        <label for="af_mail">メールアドレス <span class="req">必須</span></label>
+        <input id="af_mail" name="entry.1218551347" type="email" inputmode="email" required placeholder="例）info@example.co.jp">
+      </div>
+      <label class="agree">
+        <input type="checkbox" name="entry.1561297601" value="上記に同意します" required>
+        <span><a href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意のうえ送信します（必須）</span>
+      </label>
+      <input type="hidden" name="fvv" value="1">
+      <input type="hidden" name="pageHistory" value="0">
+      <button type="submit" class="asubmit"><span class="s">＼ 初月無料 ／</span>無料で試作を受け取る<span class="arw">→</span></button>
+      <div class="aerr" id="aerr" hidden>未入力の必須項目があります。ご確認ください。</div>
+      <p class="aor">またはお電話でもOK：<a href="tel:05068613355">050-6861-3355</a></p>
+    </form>
+
+    <div id="applyThanks" class="athanks" hidden>
+      <div class="ath-ic">✓</div>
+      <h3>送信ありがとうございます！</h3>
+      <p>担当者より折り返しご連絡いたします。<br>お急ぎの場合はお電話ください：<br><a href="tel:05068613355">050-6861-3355</a></p>
+    </div>
   </div>
+  <iframe name="gform_sink" style="display:none" title="送信先" tabindex="-1" aria-hidden="true"></iframe>
 </section>
 
 <footer>
@@ -545,7 +601,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
 
 <script>
 (function(){
-  try{if(typeof clarity==='function'){clarity('set','variant','B');}}catch(e){}
+  try{if(typeof clarity==='function'){clarity('set','variant','C');}}catch(e){}
   var sel='.htitle,.bcard,.fcard,.step,.q,.cloud,.bub,.pcard,.final .inner,.band .bt,.solve .st,.bacard,.bacol,.wcard';
   var els=[].slice.call(document.querySelectorAll(sel));
   function showAll(){els.forEach(function(e){e.classList.add('show');});}
@@ -564,25 +620,51 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
   }catch(e){ showAll(); }
 })();
 
-// フォーム誘導クリックをコンバージョン計測（GA4: generate_lead）
+// C: CTAクリック=ソフト計測（#applyへスクロール）／実リードは「送信」時に発火
 (function(){
-  function fire(loc){
-    if(typeof gtag==='function'){ gtag('event','generate_lead',{method:'form_click',link_location:loc,value:1,variant:'B'}); }
-    if(typeof fbq==='function'){ try{fbq('track','Lead',{content_name:'saiyo_form',source:loc,variant:'B'});}catch(e){} }
-    if(typeof clarity==='function'){ try{clarity('set','cta_click',loc);}catch(e){} }
-  }
   document.addEventListener('click',function(ev){
-    var a = ev.target.closest ? ev.target.closest('a[href*="docs.google.com/forms"]') : null;
+    var a = ev.target.closest ? ev.target.closest('a[href="#apply"]') : null;
     if(!a) return;
-    var loc = a.closest('.sticky') ? 'sticky' : (a.closest('.exit') ? 'exit' : (a.closest('.hero') ? 'hero' : (a.closest('.final') ? 'final' : (a.closest('.price') ? 'price' : (a.closest('.bar') ? 'header' : 'other')))));
-    fire(loc);
+    var loc = a.closest('.sticky')?'sticky':(a.closest('.exit')?'exit':(a.closest('.hero')?'hero':(a.closest('.price')?'price':(a.closest('.bar')?'header':'other'))));
+    if(typeof gtag==='function'){ gtag('event','cta_click',{link_location:loc,variant:'C'}); }
+    if(typeof clarity==='function'){ try{clarity('set','cta_click',loc);}catch(e){} }
+    setTimeout(function(){ var f=document.getElementById('af_co'); if(f&&!f.value){ try{f.focus({preventScroll:true});}catch(e){} } },560);
   });
+
+  var form=document.getElementById('applyForm');
+  var sink=document.querySelector('iframe[name="gform_sink"]');
+  var thanks=document.getElementById('applyThanks');
+  var aerr=document.getElementById('aerr');
+  var submitted=false;
+  function showThanks(){
+    if(!submitted) return;
+    if(form) form.hidden=true;
+    if(thanks){ thanks.hidden=false; try{thanks.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){} }
+  }
+  if(form){
+    form.addEventListener('submit',function(ev){
+      if(!form.checkValidity()){
+        ev.preventDefault();
+        if(aerr) aerr.hidden=false;
+        var bad=form.querySelector(':invalid'); if(bad){ try{bad.focus();}catch(e){} }
+        return;
+      }
+      if(aerr) aerr.hidden=true;
+      submitted=true;
+      var btn=form.querySelector('.asubmit'); if(btn){ btn.disabled=true; btn.innerHTML='送信中…'; }
+      if(typeof gtag==='function'){ gtag('event','generate_lead',{method:'form_submit',value:1,variant:'C'}); }
+      if(typeof fbq==='function'){ try{fbq('track','Lead',{content_name:'saiyo_form_c',variant:'C'});}catch(e){} }
+      if(typeof clarity==='function'){ try{clarity('set','lead','C'); clarity('event','lead_submit');}catch(e){} }
+      setTimeout(showThanks,1600); // iframe loadが来なくても表示（保険）
+    });
+  }
+  if(sink){ sink.addEventListener('load',function(){ if(submitted) showThanks(); }); }
 })();
 </script>
 
 <!-- sticky mobile cta -->
 <div class="sticky">
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener"><span class="s">＼ 初月無料 ／</span>まずは試作版を受け取る<span class="arw">→</span></a>
+  <a href="#apply"><span class="s">＼ 初月無料 ／</span>まずは試作版を受け取る<span class="arw">→</span></a>
 </div>
 
 <!-- B FULL: back-to-top -->
@@ -595,7 +677,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
     <div class="exith">お帰りの前に…</div>
     <p>いま決めなくて大丈夫です。<br><b>無料の試作版</b>だけでも、<br>受け取ってみませんか？</p>
     <p class="exitsub">初期0円・初月無料／しつこい営業はしません</p>
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSfLGuCYqNFj9br0vH36ohGWwiwXDo-ADk1X47Nq7dhaSzbR4w/viewform" target="_blank" rel="noopener">無料で試作版を受け取る →</a>
+    <a class="cta" href="#apply">無料で試作版を受け取る →</a>
     <button class="exitno">いまはやめておく</button>
   </div>
 </div>
@@ -611,7 +693,7 @@ footer .flinks a{color:#cde0f2;text-decoration:underline}
   if(modal){
     var shown=false;
     function openM(){ if(shown||sessionStorage.getItem('exitShown'))return; shown=true; sessionStorage.setItem('exitShown','1'); modal.classList.add('show');
-      try{if(typeof clarity==='function')clarity('set','exit_popup','B');}catch(e){} }
+      try{if(typeof clarity==='function')clarity('set','exit_popup','C');}catch(e){} }
     function closeM(){ modal.classList.remove('show'); }
     modal.querySelector('.exitclose').addEventListener('click',closeM);
     modal.querySelector('.exitno').addEventListener('click',closeM);
